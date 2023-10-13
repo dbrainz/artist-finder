@@ -1,2 +1,2 @@
-# super-team-project
+# artist-finder
 UofM Group Project 1
