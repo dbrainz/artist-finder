@@ -18,7 +18,7 @@ $(function() {
     })
 */
 
-getYTArtist("metallica");
+
 
 
 });

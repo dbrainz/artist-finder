@@ -1,3 +1,7 @@
+// call the youtube api with the function getYTArtist(artist_name)
+// example : getYTArtist("metallica");
+// currently returns ten results - we can change that number to be able to be changed on the fly, or just adjust the hard-coded number in the query if needed
+
 const YT_API_KEY="AIzaSyDvGaotukI76kg-Q_EaojpRgRGFatg0M7c";
 
 
