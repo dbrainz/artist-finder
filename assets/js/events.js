@@ -13,13 +13,23 @@ function getEvents (performers){
             console.log(data)
 
             var eventList = document.getElementById('event-list');
-
-            for (var i = 0; i < data.events.length; i++) {
+            
+            if (data.events.length > 0){
+                
+                
+                for (var i = 0; i < data.events.length; i++) {
+                    var listItem = document.createElement('li');
+                    
+                    listItem.textContent = data.events[i].venue.city + ': ' + data.events[i].datetime_local + ' local time';
+                    eventList.appendChild(listItem);
+                    
+                }
+            }
+            else {
 
                 var listItem = document.createElement('li');
-                listItem.textContent = data.events[i].venue.city + ': ' + data.events[i].datetime_local + ' local time';
+                listItem.textContent = 'No events';
                 eventList.appendChild(listItem);
-
             }
 
 
@@ -47,5 +57,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
     var artistNameInput = document.getElementById('artist-name');
     var artistName = artistNameInput.value;
     artistName = formatUserInput(artistName);
+    var eventList = document.getElementById('event-list');
+    eventList.innerHTML = '';
     getEvents(artistName);
 });
