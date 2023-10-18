@@ -18,7 +18,7 @@ $(function() {
     })
 */
 
-
+getYTArtist("the fugees")
 
 
 });
