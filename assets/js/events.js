@@ -14,10 +14,10 @@ function getEvents (performers){
 
             var eventList = document.getElementById('event-list');
 
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.events.length; i++) {
 
                 var listItem = document.createElement('li');
-                listItem.textContent = data.events[i].venue.city + ': ' + data.events[i].datetime_local + ' local time'
+                listItem.textContent = data.events[i].venue.city + ': ' + data.events[i].datetime_local + ' local time';
                 eventList.appendChild(listItem);
 
             }
