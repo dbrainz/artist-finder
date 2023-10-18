@@ -47,5 +47,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
     var artistNameInput = document.getElementById('artist-name');
     var artistName = artistNameInput.value;
     artistName = formatUserInput(artistName);
+    var eventList = document.getElementById('event-list');
+    eventList.innerHTML = '';
     getEvents(artistName);
 });
