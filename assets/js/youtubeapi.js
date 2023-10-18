@@ -47,7 +47,7 @@ function getYTArtist(artistName, numOfResults=10) {
                 }
                 results.push(videoObj);
             }
-            console.log(results);
+
             return results;
         });
 

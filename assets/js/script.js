@@ -9,16 +9,9 @@ var funnyURL = 'https://api.seatgeek.com/2/events?performers.slug='+performers+'
 
 $(function() {
 
-/*    fetch(funnyURL)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-    })
-*/
 
-getYTArtist("the fugees")
+
+
 
 
 });
