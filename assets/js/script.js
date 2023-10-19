@@ -9,9 +9,6 @@ var funnyURL = 'https://api.seatgeek.com/2/events?performers.slug='+performers+'
 
 $(function() {
 
-
-
-
-
+   
 
 });

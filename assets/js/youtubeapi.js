@@ -16,6 +16,8 @@ const YT_API_KEY="AIzaSyDvGaotukI76kg-Q_EaojpRgRGFatg0M7c";
 
 function getYTArtist(artistName, numOfResults=10) {
     var ytArtistQueryStr = ""
+    var ytVideoQueryStr= ""
+    var videoIdQueryStr = ""
     var results=[];
 
     // remove single and double quotes, ampersands, and replace spaces with underscores
@@ -25,31 +27,60 @@ function getYTArtist(artistName, numOfResults=10) {
         .replace("'","")
         .replace('"',"");
 
-    console.log(queryArtistName);
     ytArtistQueryStr = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numOfResults + "&q=" + artistName + "&type=video&key=" + YT_API_KEY;
 
     fetch(ytArtistQueryStr)
-        .then(function (response) {
-            return response.json();
+        .then(function (artistResponse) {
+            return artistResponse.json();
         })
-        .then(function (data) {
+        .then(function (artistData) {
+
             // build an object for each video to add to the results array
-            for (let x=0; x<data.items.length; x++) {
-                let videoObj = {
-                    name : data.items[x].snippet.title,
-                    description : data.items[x].snippet.description,
-                    imageSm : data.items[x].snippet.thumbnails.default.url,
-                    imageMd : data.items[x].snippet.thumbnails.medium.url,
-                    imageLg : data.items[x].snippet.thumbnails.high.url,
-                    url : "https://www.youtube.com/watch?v=" + data.items[x].id.videoId,
-                    channelTitle : data.items[x].snippet.channelTitle,
-                    channelURL : "https://www.youtube.com/channel/" + data.items[x].snippet.channelID               
+
+            for (let x=0; x<artistData.items.length; x++) {
+                if (x===0) {
+                    videoIdQueryStr = artistData.items[x].id.videoId
+                } else {
+                    videoIdQueryStr = videoIdQueryStr + "%2C" + artistData.items[x].id.videoId
                 }
-                results.push(videoObj);
             }
 
-            return results;
-        });
+            ytVideoQueryStr = "https://www.googleapis.com/youtube/v3/videos?part=contentDetails%2Csnippet%2Cstatistics%2Cstatus&id=" + videoIdQueryStr + "&key=" + YT_API_KEY;
 
+            fetch(ytVideoQueryStr)
+                .then(function(videoResponse){
+                    return videoResponse.json()
+                })
+                .then(function(videoData){
+                    
+                    for (let x=0; x<artistData.items.length; x++) {
+                        let workDate = videoData.items[x].snippet.publishedAt
+                        let videoObj = {
+                            id : artistData.items[x].id.videoId,
+                            name : artistData.items[x].snippet.title,
+                            description : artistData.items[x].snippet.description,
+                            imageSm : artistData.items[x].snippet.thumbnails.default.url,
+                            imageMd : artistData.items[x].snippet.thumbnails.medium.url,
+                            imageLg : artistData.items[x].snippet.thumbnails.high.url,
+                            url : "https://www.youtube.com/watch?v=" + artistData.items[x].id.videoId,
+                            channelTitle : artistData.items[x].snippet.channelTitle,
+                            channelURL : "https://www.youtube.com/channel/" + artistData.items[x].snippet.channelID, 
+                            length : videoData.items[x].contentDetails.duration.substr(2).replace(/hms/g,":"),
+                            views : videoData.items[x].statistics.viewCount,
+                            publishDate : workDate.substr(5,2) + "/" + workDate.substr(8,2) + "/" + workDate.substr(0,4)
+
+                        }
+                        results.push(videoObj);
+                    }
+
+                    displayYTData(results);
+                })
+
+        });
+}
+
+
+// Add code to this function to display the Youtube video info
+function displayYTData(ytData) {
 
 }
