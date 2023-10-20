@@ -42,7 +42,7 @@ function getEvents (performers){
             else {
 
                 var listItem = document.createElement('li');
-                listItem.textContent = 'No events';
+                listItem.textContent = 'No events 😭';
                 eventList.appendChild(listItem);
             }
         })
