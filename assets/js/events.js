@@ -55,17 +55,3 @@ function formatUserInput(input) {
 
     return input;
 }
-
-document.querySelector('form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    var artistNameInput = document.getElementById('artist-name');
-    var artistName = artistNameInput.value;
-    var eventList = document.getElementById('event-list');
-
-    artistName = formatUserInput(artistName);
-    eventList.innerHTML = '';
-    getEvents(artistName);
-
-    eventList.classList.add('myStyle');
-});
-
