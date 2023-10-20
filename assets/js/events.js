@@ -13,6 +13,7 @@ function getEvents (performers){
             console.log(data)
 
             var eventList = document.getElementById('event-list');
+           
             
             if (data.events.length > 0){
                 
@@ -60,4 +61,5 @@ document.querySelector('form').addEventListener('submit', function (event) {
     var eventList = document.getElementById('event-list');
     eventList.innerHTML = '';
     getEvents(artistName);
+    eventList.classList.add('myStyle');
 });
