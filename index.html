@@ -11,26 +11,34 @@
     </head>
     <body>
         <nav>
-            
-            <h1 class="text-center text-black mb-5">Something</h1>
+            <h1 class="text-center text-black ">Amazing Artist Finder</h1>
 
         </nav>
-        <section>
-            <form id="searchfield">
-                <label for="artist-name">Artist Name</label>
-                <input type="text" id="artist-name">
-                <button id="search" type="submit">Search</button>
-            </form>
+        <section class="py-5 hero" >
+            <div class="container">
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <form id="searchfield">
+                        <label for="artist-name">Artist Name</label>
+                        <input type="text" placeholder="search for Artist" id="artist-name">
+                 
+                        <button id="search" type="submit">Search</button>
+                    </form>
+            </div>
         </section>
-        <div id="event">
-            <h2>Event</h2>
-        </div> 
-        
-        <div id="videos">
-            <h2>Videos</h2>
-            <ul id="yt-videos"></ul>
+    <div class="row">
+        <div class="col-md-auto">
+            <div id="event">
+                <h2 class="width">Event</h2>
+                <ul id = "event-list"></ul>
+            </div> 
         </div>
-
+        <div class="col-md-auto">
+            <div id="videos">
+                <h2 class="width-2">Videos</h2>
+                <ul id="yt-videos"></ul>
+            </div>
+        </div>
+    </div>      
 
 
         <script 

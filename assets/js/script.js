@@ -8,17 +8,22 @@ var funnyURL = 'https://api.seatgeek.com/2/events?performers.slug='+performers+'
 
 
 $(function() {
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+    
+        var artistNameInput = document.getElementById('artist-name');
+        var artistName = artistNameInput.value;
+        artistName = formatUserInput(artistName);
+        var eventList = document.getElementById('event-list');
+        eventList.innerHTML = '';
+        getEvents(artistName);
+        eventList.classList.add('myStyle');
+    });
 
-/*    fetch(funnyURL)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-    })
-*/
+
 
 
 
 
 });
+
