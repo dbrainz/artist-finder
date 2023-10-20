@@ -17,10 +17,11 @@ $(function() {
         var eventList = document.getElementById('event-list');
         eventList.innerHTML = '';
         getEvents(artistName);
+        getYTArtist(artistNameInput.value)
         eventList.classList.add('myStyle');
     });
 
-   
+
 
 });
 
