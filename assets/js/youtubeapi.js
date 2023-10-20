@@ -90,6 +90,6 @@ function getYTArtist(artistName, numOfResults=10) {
 function displayYTData(ytData) {
     $("#yt-videos").empty();
     for (x=0; x<ytData.length; x++) {                                  
-        $("#yt-videos").append("<li class='ytListItem'><a href='" + ytData[x].url + " class='ytImage' target='_blank'><img src='" + ytData[x].imageSm + "'>" + ytData[x].name + "</a></li>")
+        $("#yt-videos").append("<li class='ytListItem'><a href='" + ytData[x].url + " class='ytLink' target='_blank'><img src='" + ytData[x].imageSm + "' class='ytImage'>" + ytData[x].name + "</a></li>")
     }
 }
