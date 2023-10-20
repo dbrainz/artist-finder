@@ -35,7 +35,6 @@ $(function() {
         getYTArtist(artistNameInput.value)
         eventList.classList.add('myStyle');
 
-
     });
 
 });
