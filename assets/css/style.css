@@ -38,9 +38,8 @@
 
 .myStyle {
     list-style-type: square;
-    margin: 0;
+    margin-left: 5px;
     padding: 0;
     font: bolder;
     font-family: 'Courier New', Courier, monospace;
-
 }
