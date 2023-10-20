@@ -88,6 +88,7 @@ function getYTArtist(artistName, numOfResults=10) {
 
 // Add code to this function to display the Youtube video info
 function displayYTData(ytData) {
+    $("#yt-videos").empty();
     for (x=0; x<ytData.length; x++) {                                  
         $("#yt-videos").append("<li class='ytListItem'><a href='" + ytData[x].url + " class='ytImage' target='_blank'><img src='" + ytData[x].imageSm + "'>" + ytData[x].name + "</a></li>")
     }
