@@ -34,7 +34,7 @@ function getEvents (performers){
                     console.log(formatDate);
                     console.log(formatTime);
                    
-                    listItem.textContent = '· ' + data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
+                    listItem.textContent = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
                     eventList.appendChild(listItem);
                     
                 }
