@@ -71,7 +71,7 @@ function getYTArtist(artistName, numOfResults=10) {
                             url : "https://www.youtube.com/watch?v=" + artistData.items[x].id.videoId,
                             channelTitle : artistData.items[x].snippet.channelTitle,
                             channelURL : "https://www.youtube.com/channel/" + artistData.items[x].snippet.channelID, 
-                            length : videoData.items[x].contentDetails.duration.substr(2).replace(/hms/g,":"),
+                            videoLength : videoData.items[x].contentDetails.duration.substr(2).replace(/hms/g,":"),
                             views : videoData.items[x].statistics.viewCount,
                             publishDate : workDate.substr(5,2) + "/" + workDate.substr(8,2) + "/" + workDate.substr(0,4)
 
@@ -86,10 +86,16 @@ function getYTArtist(artistName, numOfResults=10) {
 }
 
 
-// Add code to this function to display the Youtube video info
+// Generate and append list items for the video list
 function displayYTData(ytData) {
     $("#yt-videos").empty();
     for (x=0; x<ytData.length; x++) {                                  
-        $("#yt-videos").append("<li class='ytListItem'><a href='" + ytData[x].url + " class='ytLink' target='_blank'><img src='" + ytData[x].imageSm + "' class='ytImage'>" + ytData[x].name + "</a></li>")
+        $("#yt-videos").append("<li class='ytListItem'><a id='ytVideo" + x + "' href='" + ytData[x].url + " class='ytLink' target='_blank'><img src='" + ytData[x].imageSm + "' class='ytImage'>" + ytData[x].name + "</a></li>")
+        // Build tooltip with video views, length, and date added to youtube
+        let videoEl = document.getElementById('ytVideo' + x)
+        let tooltip = new bootstrap.Tooltip(videoEl,{
+            html:true,
+            title:"<b>Views : </b>" + ytData[x].views + "<br><b>Length : </b>" + ytData[x].videoLength + "<br><b>Released : </b>" + ytData[x].publishDate
+        })
     }
 }
