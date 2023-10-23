@@ -10,7 +10,7 @@ ul {
 }
 
 .list-row {
-    margin-top: 100px;
+    /*margin-top: 100px;*/
     min-height: 300px;
 }
 
@@ -64,6 +64,11 @@ ul {
     margin-left: 30px;
 
 }*/
+
+#previousSearch {
+    padding-left: 75px;
+    justify-content: center;
+}
 
 .introduction {
     width: 20%;
