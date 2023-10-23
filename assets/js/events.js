@@ -10,7 +10,6 @@ function getEvents (performers){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
 
             var eventList = document.getElementById('event-list');
            
@@ -30,13 +29,15 @@ function getEvents (performers){
                     if (formatTime == '03:30 am'){
                         formatTime = 'TBD';
                     }
-
-                    console.log(formatDate);
-                    console.log(formatTime);
                    
-                    listItem.textContent = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
-                    eventList.appendChild(listItem);
-                    
+                    eventDisplayStr = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
+                    var record = data.events[i];
+                    $("#event-list").append("<li class='sgListItem'><a id='sgShow" + i + "' href='" + record.url + "' class='sgLink' target='_blank'>" + eventDisplayStr + "</a></li>")
+                    let seatEl = document.getElementById('sgShow' + i)
+                    let tooltip = new bootstrap.Tooltip(seatEl,{
+                        html:true,
+                        title:"<b>" + record.short_title + "</b><br><b>Venue : </b>" + record.venue.name + "<br><b>Lowest Price : </b>" + record.stats.lowest_price + "<br><b>Average Price : </b>" + record.stats.average_price
+                    })
                 }
             }
             else {
