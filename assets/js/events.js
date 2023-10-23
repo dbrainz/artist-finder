@@ -31,11 +31,11 @@ function getEvents (performers){
                         formatTime = 'TBD';
                     }
 
-                    console.log(formatDate);
-                    console.log(formatTime);
+                    //console.log(formatDate);
+                    //console.log(formatTime);
                    
-                    listItem.textContent = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
-                    eventList.appendChild(listItem);
+                    eventDisplayStr = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
+                    $("#event-list").append("<li class='sgListItem'><a id='sgShow" + x + "' href='" + data.events[i].url + "' class='sgLink' target='_blank'>" + eventDisplayStr + "</a></li>")
                     
                 }
             }
