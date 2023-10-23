@@ -76,16 +76,6 @@ $(function() {
 
         artistSearch(artistName)
         
-        // add new search to the previous searches list
-        /*addPrevious(artistName);
-    
-        artistName = formatUserInput(artistName);
-        var eventList = document.getElementById('event-list');
-        eventList.innerHTML = '';
-        getEvents(artistName);
-        getYTArtist(artistNameInput.value)
-        eventList.classList.add('myStyle');
-        */
     });
 
 });
