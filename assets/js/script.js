@@ -59,7 +59,7 @@ function artistSearch(searchName) {
     eventList.innerHTML = '';
     getEvents(cleanName);
     getYTArtist(searchName)
-    eventList.classList.add('myStyle');
+    //eventList.classList.add('myStyle');
 
 }
 $(function() {
