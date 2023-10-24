@@ -20,7 +20,7 @@ ul {
 }
 .width {
      
-    /* padding-left: 350px; */
+    padding-left: 30px;
     border-style: solid;
     border-width:3px;
     color: pink;
@@ -30,12 +30,12 @@ ul {
 }
 
 .width-2 {
-    /* padding-left: 350px; */
+    padding-left: 30px;
     border-style: solid;
     border-width:3px;
     /*color:#e7a6b1;*/
     color: rgb(255, 192, 203);
-    margin-left: 225px;
+    /*margin-left: 225px;*/
     width: 80%;
     font-weight:bold;
     font-size: 35px;

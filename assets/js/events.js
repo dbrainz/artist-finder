@@ -13,6 +13,9 @@ function getEvents (performers){
 
             var eventList = document.getElementById('event-list');
            
+           
+            
+            
             
             if (data.events.length > 0){
                 
@@ -29,7 +32,7 @@ function getEvents (performers){
                     if (formatTime == '03:30 am'){
                         formatTime = 'TBD';
                     }
-                   
+
                     eventDisplayStr = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
                     var record = data.events[i];
                     $("#event-list").append("<li class='sgListItem'><a id='sgShow" + i + "' href='" + record.url + "' class='sgLink' target='_blank'>" + eventDisplayStr + "</a></li>")

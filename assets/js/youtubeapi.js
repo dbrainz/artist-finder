@@ -20,6 +20,7 @@
 
 const YT_API_KEY="AIzaSyDvGaotukI76kg-Q_EaojpRgRGFatg0M7c";
 
+
 function getYTArtist(artistName, numOfResults=10) {
     var ytArtistQueryStr = ""
     var ytVideoQueryStr= ""
@@ -37,6 +38,10 @@ function getYTArtist(artistName, numOfResults=10) {
 
     fetch(ytArtistQueryStr)
         .then(function (artistResponse) {
+            if (!artistResponse.ok) {
+                const error = (data && data.message) || Response.status;
+                return Promise.reject(error);
+            }
             return artistResponse.json();
         })
         .then(function (artistData) {
@@ -82,7 +87,10 @@ function getYTArtist(artistName, numOfResults=10) {
                     displayYTData(results);
                 })
 
-        });
+        })
+        .catch((error) => {
+            $("#yt-videos").append("<li><b>YouTube API daily quota exceeded</b></li>")
+        })
 }
 
 
