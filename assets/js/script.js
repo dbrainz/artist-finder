@@ -2,14 +2,12 @@
 // place any code that runs on page load inside here, so that it won't run until
 // after jquery finishes loading - global variable declarations and functions and such
 // can go outside of here
-var performers = 'new-york-mets';
-var funnyUrlApiKey = 'Mzc1ODA2NjR8MTY5NzUwNDM1MS4yMDEzNTM'
-var funnyURL = 'https://api.seatgeek.com/2/events?performers.slug='+performers+'&client_id='+funnyUrlApiKey;
+
 var storedArtists = "";
 
-
 function loadPrevious() {
-    storedArtists = JSON.parse(localStorage.getItem('previousSearch')) || [];   
+    storedArtists = JSON.parse(localStorage.getItem('previousSearch')) || []; 
+    //storedArtists= [];  
     displayPrevious();    
 }
 
@@ -29,45 +27,49 @@ function addPrevious(searchStr) {
     displayPrevious();
 }
 
-function displayPrevious(){
+function displayIndex(prevIndex) {
+    $("#artist-name").val(storedArtists[prevIndex])
+    artistSearch(storedArtists[prevIndex])
+}
 
+function displayPrevious(){
+    // build and display the list of previous searches
     var previousEl = $("#previousSearchEl")
     buildStr = "Previous Searches : "
-    //previousEl.html('Previous Searches: ' + storedArtists.join(', ')); 
+
     previousEl.empty()
     previousEl.append("Previous Searches : ")
     for (x=0; x<storedArtists.length;x++) {
-        previousEl.append("<li><a href = '#' id='#prevSearch" + x + "' onclick=artistSearch('" + storedArtists[x] + "')>" + storedArtists[x] + "</a></li>")
-        //if (x!=storedArtists.length-1) {
-        //    previousEl.append(", ")
-       // }
+        previousEl.append("<li><a href = '#' id='#prevSearch" + x + "' onclick=displayIndex(" +  x + ")>" + storedArtists[x] + "</a></li>")
+
         listenEl = $("#prevSearch" + x)
         listenEl.click(function() {
             console.log("foo")
             artistSearch(storedArtists[x])
         })
-
     }
-
 }
 
 function artistSearch(searchName) {
-
+    // main work function
+    // add new search to previous searches list
     addPrevious(searchName);
+    // clean up the user input
     var cleanName = formatUserInput(searchName);
     var eventList = document.getElementById('event-list');
     eventList.innerHTML = '';
+    // call seatgeek api
     getEvents(cleanName);
+    // call youtube api
     getYTArtist(searchName)
-    //eventList.classList.add('myStyle');
 
 }
 $(function() {
 
-    // load and display previous artist search list
+    // load and display previous artist search list omn page load 
     loadPrevious();
 
-
+    // listen for clicks on search button
     document.querySelector('form').addEventListener('submit', function (event) {
         event.preventDefault();
     
