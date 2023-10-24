@@ -1,22 +1,18 @@
-var funnyUrlApiKey = 'Mzc1ODA2NjR8MTY5NzUwNDM1MS4yMDEzNTM'
+const seatgeekAPIKey = 'Mzc1ODA2NjR8MTY5NzUwNDM1MS4yMDEzNTM'
 
 function getEvents (performers){
 
     var artist = performers;
-    var funnyURL = `https://api.seatgeek.com/2/events?performers.slug=${artist}&client_id=${funnyUrlApiKey}`;
+    var seatgeekURL = `https://api.seatgeek.com/2/events?performers.slug=${artist}&client_id=${seatgeekAPIKey}`;
     
-      fetch(funnyURL)
+      fetch(seatgeekURL)
         .then(function(response){
             return response.json()
         })
         .then(function(data){
 
             var eventList = document.getElementById('event-list');
-           
-           
-            
-            
-            
+                     
             if (data.events.length > 0){
                 
                 
@@ -33,9 +29,11 @@ function getEvents (performers){
                         formatTime = 'TBD';
                     }
 
+                    // build show list items
                     eventDisplayStr = data.events[i].venue.city + ': ' + formatDate + ' at ' + formatTime;
                     var record = data.events[i];
                     $("#event-list").append("<li class='sgListItem'><a id='sgShow" + i + "' href='" + record.url + "' class='sgLink' target='_blank'>" + eventDisplayStr + "</a></li>")
+                    // add tooltips to each show item to display a longer show description, venue, low price, and average price
                     let seatEl = document.getElementById('sgShow' + i)
                     let tooltip = new bootstrap.Tooltip(seatEl,{
                         html:true,

@@ -13,7 +13,7 @@
 // imageMd - url of the medium thumbnail for the video - 320px x 180px
 // imageLg - url of the large thumbnail for the video - 480px x 360px
 // id - Youtubes unique ID for the video
-// length - string with the video length formatted for display
+// videoLength - string with the video length formatted for display
 // views - number of views the video has had
 // publishDate - date the video was added to Youtube
 
@@ -36,6 +36,8 @@ function getYTArtist(artistName, numOfResults=10) {
 
     ytArtistQueryStr = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numOfResults + "&q=" + artistName + "&type=video&key=" + YT_API_KEY;
 
+    // first youtube api query - searches based on the user input
+    // uses 100 youtube api quota coins
     fetch(ytArtistQueryStr)
         .then(function (artistResponse) {
             if (!artistResponse.ok) {
@@ -46,8 +48,9 @@ function getYTArtist(artistName, numOfResults=10) {
         })
         .then(function (artistData) {
 
-            // build an object for each video to add to the results array
-
+            
+            // build the a comma delimited list of the video ids retrieved by the first search so we can
+            // call a different endpoint on the youtube api to get more detailed info for each video
             for (let x=0; x<artistData.items.length; x++) {
                 if (x===0) {
                     videoIdQueryStr = artistData.items[x].id.videoId
@@ -58,12 +61,14 @@ function getYTArtist(artistName, numOfResults=10) {
 
             ytVideoQueryStr = "https://www.googleapis.com/youtube/v3/videos?part=contentDetails%2Csnippet%2Cstatistics%2Cstatus&id=" + videoIdQueryStr + "&key=" + YT_API_KEY;
 
+            // call youbue api a second time to get detailed info about each video
             fetch(ytVideoQueryStr)
                 .then(function(videoResponse){
                     return videoResponse.json()
                 })
                 .then(function(videoData){
                     
+                    // build an object for each video combining the info that we will actually use from the first and second objects
                     for (let x=0; x<artistData.items.length; x++) {
                         let workDate = videoData.items[x].snippet.publishedAt
                         let videoObj = {
@@ -98,7 +103,7 @@ function getYTArtist(artistName, numOfResults=10) {
 function displayYTData(ytData) {
     $("#yt-videos").empty();
     for (x=0; x<ytData.length; x++) {                                  
-        $("#yt-videos").append("<li class='ytListItem'><a id='ytVideo" + x + "' href='" + ytData[x].url + " class='ytLink' target='_blank'><img src='" + ytData[x].imageSm + "' class='ytImage'>" + ytData[x].name + "</a></li>")
+        $("#yt-videos").append("<li class='ytListItem'><a id='ytVideo" + x + "' href='" + ytData[x].url + " class='ytLink' target='_blank'><div class='row'><img src='" + ytData[x].imageSm + "' class='ytImage col-3'><span class='col-9 my-auto'>" + ytData[x].name + "</span></div></a></li>")
         // Build tooltip with video views, length, and date added to youtube
         let videoEl = document.getElementById('ytVideo' + x)
         let tooltip = new bootstrap.Tooltip(videoEl,{

@@ -33,7 +33,7 @@ function displayIndex(prevIndex) {
 }
 
 function displayPrevious(){
-
+    // build and display the list of previous searches
     var previousEl = $("#previousSearchEl")
     buildStr = "Previous Searches : "
 
@@ -47,28 +47,29 @@ function displayPrevious(){
             console.log("foo")
             artistSearch(storedArtists[x])
         })
-
     }
-
 }
 
 function artistSearch(searchName) {
-
+    // main work function
+    // add new search to previous searches list
     addPrevious(searchName);
+    // clean up the user input
     var cleanName = formatUserInput(searchName);
     var eventList = document.getElementById('event-list');
     eventList.innerHTML = '';
+    // call seatgeek api
     getEvents(cleanName);
+    // call youtube api
     getYTArtist(searchName)
 
 }
 $(function() {
 
-
-    // load and display previous artist search list
+    // load and display previous artist search list omn page load 
     loadPrevious();
 
-
+    // listen for clicks on search button
     document.querySelector('form').addEventListener('submit', function (event) {
         event.preventDefault();
     
