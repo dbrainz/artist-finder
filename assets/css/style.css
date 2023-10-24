@@ -24,9 +24,9 @@ ul {
     border-style: solid;
     border-width:3px;
     color: pink;
-    /*margin-top: 100px;
-    margin-left: 20px;*/
-    
+    width: 80%;
+    font-weight: bold;
+    font-size: 35px;
 }
 
 .width-2 {
@@ -35,7 +35,10 @@ ul {
     border-width:3px;
     /*color:#e7a6b1;*/
     color: rgb(255, 192, 203);
-    /*margin-top: 100px;*/
+    margin-left: 225px;
+    width: 80%;
+    font-weight:bold;
+    font-size: 35px;
 }
 
 .container {
@@ -110,10 +113,13 @@ body {
 
 #event-list {
     background-color: pink; 
+    width: 80%;
 }
 
 #yt-videos {
     background-color: #e7a6b1;
+    width: 80%;
+    font-family:'Courier New', Courier, monospace;
 }
 
 #previousSearchEl li {
@@ -122,5 +128,11 @@ body {
     width: 25%;
     text-align: center;
     font-family:'Courier New', Courier, monospace;
-    font-weight: bold;
+    font-weight: bolder;
+}
+
+#event-list li {
+    font-size: 22px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;  
 }
