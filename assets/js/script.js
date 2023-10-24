@@ -31,16 +31,16 @@ function addPrevious(searchStr) {
 
 function displayPrevious(){
 
-    var previousEl = $("#previousSearch")
+    var previousEl = $("#previousSearchEl")
     buildStr = "Previous Searches : "
     //previousEl.html('Previous Searches: ' + storedArtists.join(', ')); 
     previousEl.empty()
     previousEl.append("Previous Searches : ")
     for (x=0; x<storedArtists.length;x++) {
-        previousEl.append("<a href = '#' id='#prevSearch" + x + "' onclick=artistSearch('" + storedArtists[x] + "')>" + storedArtists[x] + "</a>")
-        if (x!=storedArtists.length-1) {
-            previousEl.append(", ")
-        }
+        previousEl.append("<li><a href = '#' id='#prevSearch" + x + "' onclick=artistSearch('" + storedArtists[x] + "')>" + storedArtists[x] + "</a></li>")
+        //if (x!=storedArtists.length-1) {
+        //    previousEl.append(", ")
+       // }
         listenEl = $("#prevSearch" + x)
         listenEl.click(function() {
             console.log("foo")

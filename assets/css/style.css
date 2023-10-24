@@ -24,9 +24,9 @@ ul {
     border-style: solid;
     border-width:3px;
     color: pink;
-    /*margin-top: 100px;
-    margin-left: 20px;*/
-    
+    width: 80%;
+    font-weight: bold;
+    font-size: 35px;
 }
 
 .width-2 {
@@ -34,8 +34,11 @@ ul {
     border-style: solid;
     border-width:3px;
     /*color:#e7a6b1;*/
-    color: pink;
-    /*margin-top: 100px;*/
+    color: rgb(255, 192, 203);
+    margin-left: 225px;
+    width: 80%;
+    font-weight:bold;
+    font-size: 35px;
 }
 
 .container {
@@ -68,6 +71,7 @@ ul {
 #previousSearch {
     padding-left: 75px;
     justify-content: center;
+    font-size: 20px;
 }
 
 .introduction {
@@ -82,8 +86,8 @@ ul {
 }
 
 .our-service {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%; 
     background-color:#ffc0cb;
     display: flex;
@@ -94,8 +98,13 @@ ul {
 }
 
 .our-service p {
-    font-size: small;
+    font-size: medium;
     font-style: italic;
+    padding: 8px;
+}
+
+.our-service h3 {
+    padding: 8px;
 }
 
 body {
@@ -103,10 +112,27 @@ body {
   }
 
 #event-list {
-    background-color: pink;
+    background-color: pink; 
+    width: 80%;
 }
 
 #yt-videos {
     background-color: #e7a6b1;
+    width: 80%;
+    font-family:'Courier New', Courier, monospace;
 }
 
+#previousSearchEl li {
+    border-style:solid;
+    border-radius: 5px;
+    width: 25%;
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+#event-list li {
+    font-size: 22px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;  
+}
